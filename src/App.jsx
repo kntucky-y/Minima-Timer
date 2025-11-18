@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { createBellSound } from "./bellSound";
 import "./App.css";
 
 function TimeInput({ label, value, onChange, disabled, placeholder = "00" }) {
@@ -130,6 +131,18 @@ export default function App() {
   const [isPaused, setIsPaused] = useState(false);
   const [isStarting, setIsStarting] = useState(false);
   const [theme, setTheme] = useState('dark');
+  
+  // Bell sound reference
+  const bellSoundRef = useRef(null);
+  
+  // Initialize bell sound on component mount
+  useEffect(() => {
+    try {
+      bellSoundRef.current = createBellSound();
+    } catch (error) {
+      console.warn('Audio context not available:', error);
+    }
+  }, []);
 
   const hasTime = useCallback(() => {
     const h = parseInt(hours || "0", 10);
@@ -190,6 +203,16 @@ export default function App() {
         if (prev <= 1) {
           setIsRunning(false);
           setIsPaused(false);
+          
+          // Play notification sound when timer completes
+          if (bellSoundRef.current) {
+            try {
+              bellSoundRef.current.playBellSound();
+            } catch (error) {
+              console.warn('Could not play notification sound:', error);
+            }
+          }
+          
           return 0;
         }
         return prev - 1;

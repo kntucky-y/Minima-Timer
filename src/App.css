@@ -64,6 +64,14 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: 0.5rem;
+    padding-top: 1rem;
+  }
 }
 
 .timer-container {
@@ -139,6 +147,23 @@ body {
   outline: none;
   transition: all 0.2s ease;
   appearance: textfield;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .time-field {
+    width: 70px;
+    height: 55px;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .time-field {
+    width: 60px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
 }
 
 .time-field::-webkit-outer-spin-button,
@@ -335,48 +360,186 @@ body {
   box-shadow: none !important;
 }
 
-/* Responsive Design */
+/* Enhanced Responsive Design */
+
+/* Tablet and small desktop */
+@media (max-width: 1024px) {
+  .timer-container {
+    gap: 1.5rem;
+  }
+  
+  .circular-timer {
+    gap: 3rem;
+  }
+}
+
+/* Mobile landscape and small tablets */
 @media (max-width: 768px) {
-  .timer-title {
-    font-size: 2rem;
+  .timer-container {
+    gap: 1.2rem;
+  }
+  
+  .theme-controls {
+    margin-bottom: 0.3rem;
+  }
+  
+  .theme-btn {
+    padding: 0.4rem 1.2rem;
+    font-size: 0.85rem;
   }
   
   .circular-timer {
     gap: 2rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 1rem 0.5rem;
+  }
+  
+  .timer-circle {
+    gap: 0.8rem;
   }
   
   .time-inputs {
-    gap: 2rem;
+    gap: 1.8rem;
+    margin: 0.8rem 0;
   }
   
   .timer-controls {
     flex-direction: column;
     width: 100%;
-    max-width: 300px;
+    max-width: 320px;
+    gap: 1rem;
   }
   
   .action-button {
     width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .timer-title {
-    font-size: 1.5rem;
-    letter-spacing: 0.2em;
+    padding: 0.8rem 1.5rem;
+    min-width: auto;
   }
   
   .progress-value {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+}
+
+/* Mobile portrait */
+@media (max-width: 480px) {
+  .app {
+    padding: 0.3rem;
+    padding-top: 0.8rem;
+  }
+  
+  .timer-container {
+    gap: 1rem;
+  }
+  
+  .theme-controls {
+    gap: 0.5rem;
+    padding: 0.4rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .theme-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
   }
   
   .circular-timer {
     gap: 1.5rem;
+    padding: 0.8rem 0.3rem;
+  }
+  
+  .timer-circle {
+    gap: 0.6rem;
   }
   
   .time-inputs {
-    gap: 1.5rem;
+    gap: 1.2rem;
+    margin: 0.6rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .time-input {
+    gap: 0.6rem;
+  }
+  
+  .time-label {
+    font-size: 0.75rem;
+  }
+  
+  .timer-controls {
+    gap: 0.8rem;
+    max-width: 280px;
+  }
+  
+  .action-button {
+    padding: 0.75rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  
+  .progress-value {
+    font-size: 1.8rem;
+  }
+  
+  .progress-label {
+    font-size: 0.65rem;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 360px) {
+  .circular-timer {
+    gap: 1rem;
+  }
+  
+  .time-inputs {
+    gap: 1rem;
+  }
+  
+  .timer-controls {
+    max-width: 260px;
+  }
+  
+  .progress-value {
+    font-size: 1.6rem;
+  }
+  
+  .time-field {
+    width: 55px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .app {
+    padding-top: 0.5rem;
+  }
+  
+  .timer-container {
+    gap: 0.8rem;
+  }
+  
+  .circular-timer {
+    flex-direction: row;
+    gap: 2rem;
+    padding: 0.5rem;
+  }
+  
+  .time-inputs {
+    margin: 0.5rem 0;
+  }
+  
+  .timer-controls {
+    flex-direction: row;
+    max-width: none;
+    gap: 1rem;
+  }
+  
+  .action-button {
+    width: auto;
+    min-width: 100px;
   }
 }
 
