@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32">
+  <!-- Outer circle -->
+  <circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="10"/>
+  
+  <!-- Hour markers -->
+  <line x1="50" y1="5" x2="50" y2="15" stroke="white" stroke-width="3"/>
+  <line x1="95" y1="50" x2="85" y2="50" stroke="white" stroke-width="3"/>
+  <line x1="50" y1="95" x2="50" y2="85" stroke="white" stroke-width="3"/>
+  <line x1="5" y1="50" x2="15" y2="50" stroke="white" stroke-width="3"/>
+  
+  <!-- Additional hour markers -->
+  <line x1="21.21" y1="21.21" x2="26.27" y2="26.27" stroke="white" stroke-width="2"/>
+  <line x1="78.79" y1="21.21" x2="73.73" y2="26.27" stroke="white" stroke-width="2"/>
+  <line x1="78.79" y1="78.79" x2="73.73" y2="73.73" stroke="white" stroke-width="2"/>
+  <line x1="21.21" y1="78.79" x2="26.27" y2="73.73" stroke="white" stroke-width="2"/>
+  
+  <!-- Smaller hour markers -->
+  <line x1="36.96" y1="10.35" x2="38.30" y2="13.17" stroke="white" stroke-width="1.5"/>
+  <line x1="63.04" y1="10.35" x2="61.70" y2="13.17" stroke="white" stroke-width="1.5"/>
+  <line x1="89.65" y1="36.96" x2="86.83" y2="38.30" stroke="white" stroke-width="1.5"/>
+  <line x1="89.65" y1="63.04" x2="86.83" y2="61.70" stroke="white" stroke-width="1.5"/>
+  <line x1="63.04" y1="89.65" x2="61.70" y2="86.83" stroke="white" stroke-width="1.5"/>
+  <line x1="36.96" y1="89.65" x2="38.30" y2="86.83" stroke="white" stroke-width="1.5"/>
+  <line x1="10.35" y1="63.04" x2="13.17" y2="61.70" stroke="white" stroke-width="1.5"/>
+  <line x1="10.35" y1="36.96" x2="13.17" y2="38.30" stroke="white" stroke-width="1.5"/>
+  
+  <!-- Clock hands -->
+  <line x1="50" y1="50" x2="50" y2="25" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="70" y2="50" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Center dot -->
+  <circle cx="50" cy="50" r="3" fill="white"/>
+</svg>
