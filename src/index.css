@@ -31,10 +31,6 @@ body {
   /* Mobile optimizations */
   -webkit-tap-highlight-color: transparent;
   -webkit-overflow-scrolling: touch;
-  
-  /* Prevent all scrolling */
-  overflow: hidden;
-  height: 100vh;
 }
 
 /* Remove default button styles */
