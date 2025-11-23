@@ -132,6 +132,11 @@ export default function App() {
   const [isStarting, setIsStarting] = useState(false);
   const [theme, setTheme] = useState('dark');
   
+  // Timer state for accurate timing
+  const [startTime, setStartTime] = useState(null);
+  const [pausedTime, setPausedTime] = useState(0);
+  const [endTime, setEndTime] = useState(null);
+  
   // Bell sound reference
   const bellSoundRef = useRef(null);
   
@@ -155,14 +160,18 @@ export default function App() {
 
   const handleStart = async () => {
     if (isRunning && !isPaused) {
+      // Pausing the timer
       setIsPaused(true);
       setIsRunning(false);
+      setPausedTime(Date.now() - startTime);
       return;
     }
 
     if (isPaused) {
+      // Resuming the timer
       setIsPaused(false);
       setIsRunning(true);
+      setStartTime(Date.now() - pausedTime);
       return;
     }
 
@@ -181,8 +190,12 @@ export default function App() {
       return;
     }
 
+    const now = Date.now();
     setTotalSeconds(total);
     setRemainingSeconds(total);
+    setStartTime(now);
+    setEndTime(now + (total * 1000));
+    setPausedTime(0);
     setIsRunning(true);
     setIsPaused(false);
     setIsStarting(false);
@@ -193,34 +206,46 @@ export default function App() {
     setIsPaused(false);
     setRemainingSeconds(0);
     setTotalSeconds(0);
+    setStartTime(null);
+    setEndTime(null);
+    setPausedTime(0);
   };
 
   useEffect(() => {
-    if (!isRunning || isPaused) return;
+    if (!isRunning || isPaused || !endTime) return;
 
-    const intervalId = setInterval(() => {
-      setRemainingSeconds((prev) => {
-        if (prev <= 1) {
-          setIsRunning(false);
-          setIsPaused(false);
-          
-          // Play notification sound when timer completes
-          if (bellSoundRef.current) {
-            try {
-              bellSoundRef.current.playBellSound();
-            } catch (error) {
-              console.warn('Could not play notification sound:', error);
-            }
+    const updateTimer = () => {
+      const now = Date.now();
+      const remaining = Math.max(0, Math.ceil((endTime - now) / 1000));
+      
+      setRemainingSeconds(remaining);
+      
+      if (remaining <= 0) {
+        setIsRunning(false);
+        setIsPaused(false);
+        setStartTime(null);
+        setEndTime(null);
+        setPausedTime(0);
+        
+        // Play notification sound when timer completes
+        if (bellSoundRef.current) {
+          try {
+            bellSoundRef.current.playBellSound();
+          } catch (error) {
+            console.warn('Could not play notification sound:', error);
           }
-          
-          return 0;
         }
-        return prev - 1;
-      });
-    }, 1000);
+      }
+    };
+
+    // Update immediately
+    updateTimer();
+    
+    // Use a shorter interval for smoother updates and better accuracy
+    const intervalId = setInterval(updateTimer, 100);
 
     return () => clearInterval(intervalId);
-  }, [isRunning, isPaused]);
+  }, [isRunning, isPaused, endTime]);
 
   const getButtonText = () => {
     if (isStarting) return "Starting...";
