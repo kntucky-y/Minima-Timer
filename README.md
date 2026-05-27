@@ -48,4 +48,4 @@ Issues and pull requests are welcome. Please keep changes focused and include a 
 
 License
 -------
-Not specified. If you plan to reuse or redistribute, add a license file.
+MIT. See the LICENSE file.
