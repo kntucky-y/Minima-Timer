@@ -131,10 +131,6 @@ export default function App() {
   const [isPaused, setIsPaused] = useState(false);
   const [isStarting, setIsStarting] = useState(false);
   const [theme, setTheme] = useState('dark');
-  
-  // Timer state for accurate timing
-  const [startTime, setStartTime] = useState(null);
-  const [pausedTime, setPausedTime] = useState(0);
   const [endTime, setEndTime] = useState(null);
   
   // Bell sound reference
@@ -161,17 +157,22 @@ export default function App() {
   const handleStart = async () => {
     if (isRunning && !isPaused) {
       // Pausing the timer
+      const now = Date.now();
+      const remaining = endTime ? Math.max(0, Math.ceil((endTime - now) / 1000)) : 0;
+      setRemainingSeconds(remaining);
+      setEndTime(null);
       setIsPaused(true);
       setIsRunning(false);
-      setPausedTime(Date.now() - startTime);
       return;
     }
 
     if (isPaused) {
       // Resuming the timer
+      const now = Date.now();
+      const remaining = Math.max(0, remainingSeconds);
+      setEndTime(now + remaining * 1000);
       setIsPaused(false);
       setIsRunning(true);
-      setStartTime(Date.now() - pausedTime);
       return;
     }
 
@@ -190,12 +191,10 @@ export default function App() {
       return;
     }
 
-    const now = Date.now();
     setTotalSeconds(total);
     setRemainingSeconds(total);
-    setStartTime(now);
+    const now = Date.now();
     setEndTime(now + (total * 1000));
-    setPausedTime(0);
     setIsRunning(true);
     setIsPaused(false);
     setIsStarting(false);
@@ -206,9 +205,7 @@ export default function App() {
     setIsPaused(false);
     setRemainingSeconds(0);
     setTotalSeconds(0);
-    setStartTime(null);
     setEndTime(null);
-    setPausedTime(0);
   };
 
   useEffect(() => {
@@ -223,9 +220,7 @@ export default function App() {
       if (remaining <= 0) {
         setIsRunning(false);
         setIsPaused(false);
-        setStartTime(null);
         setEndTime(null);
-        setPausedTime(0);
         
         // Play notification sound when timer completes
         if (bellSoundRef.current) {
