@@ -9,7 +9,7 @@
   <a href="https://github.com/kntucky-y/Minima-Timer"><img src="https://img.shields.io/badge/Repository-181717?style=for-the-badge&logo=github&logoColor=white" alt="Repository" /></a>
 </p>
 
-<img src="docs/screenshots/live-landscape.png" width="100%" alt="Minima Timer live website in dark mode" />
+<img src="docs/screenshots/minima-timer-landscape.png" width="100%" alt="Minima Timer live website in dark mode" />
 
 </div>
 
