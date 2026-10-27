@@ -9,6 +9,8 @@
   <a href="https://github.com/kntucky-y/Minima-Timer"><img src="https://img.shields.io/badge/Repository-181717?style=for-the-badge&logo=github&logoColor=white" alt="Repository" /></a>
 </p>
 
+<img src="docs/screenshots/live-dark-mode.png" width="900" alt="Minima Timer live website in dark mode" />
+
 </div>
 
 ## Overview
@@ -17,7 +19,8 @@ Minima Timer is a small, focused countdown timer built around a clean circular
 display. It keeps the controls simple so the timer can stay in the background
 while you work, study, or take a deliberate break.
 
-Try the [live demo](https://minima-timer.dcism.org).
+Try the [live website](https://minima-timer.dcism.org). The screenshot above
+is a capture of the deployed app in its default dark theme.
 
 ## Features
 
